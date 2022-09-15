@@ -69,7 +69,8 @@ void _run(CliArguments parsedArgs) {
 
   final svgMap = {
     for (final f in svgFileList)
-      p.basenameWithoutExtension(f.path): File(f.path).readAsStringSync(),
+      '${p.basenameWithoutExtension(f.path)}${(p.basename(p.dirname(f.path))) != p.basename(parsedArgs.svgDir.path) ? '_${p.basename(p.dirname(f.path))}' : ''}':
+          File(f.path).readAsStringSync(),
   };
 
   final otfResult = svgToOtf(
